@@ -13,16 +13,27 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>("system");
-  const [resolvedTheme, setResolvedTheme] = useState<"light" | "dark">("dark");
-
-  // Initialize theme from localStorage
-  useEffect(() => {
-    const stored = localStorage.getItem("theme") as Theme | null;
-    if (stored) {
-      setThemeState(stored);
+  const [theme, setThemeState] = useState<Theme>(() => {
+    // Read synchronously on first render (client only)
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem("theme") as Theme | null;
+      if (stored === "light" || stored === "dark" || stored === "system") {
+        return stored;
+      }
     }
-  }, []);
+    return "system";
+  });
+
+  const [resolvedTheme, setResolvedTheme] = useState<"light" | "dark">(() => {
+    // Mirror what the blocking script does so initial render matches
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem("theme");
+      if (stored === "light") return "light";
+      if (stored === "dark") return "dark";
+      return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    }
+    return "dark";
+  });
 
   // Update resolved theme based on system preference or user choice
   useEffect(() => {

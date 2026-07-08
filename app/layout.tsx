@@ -109,6 +109,25 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning className={`${inter.variable} ${syne.variable} ${spaceGrotesk.variable} ${playfair.variable} ${poppins.variable} ${dmSans.variable} ${jetbrainsMono.variable}`}>
       <head>
         <meta name="theme-color" content="#0a0339" />
+        {/* Blocking script — runs before first paint, prevents theme flash */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var stored = localStorage.getItem('theme');
+                  var theme = stored === 'light' || stored === 'dark' ? stored : null;
+                  if (!theme) {
+                    theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                  }
+                  document.documentElement.classList.add(theme);
+                } catch (e) {
+                  document.documentElement.classList.add('dark');
+                }
+              })();
+            `,
+          }}
+        />
       </head>
       <body className="font-body bg-background text-foreground antialiased">
         <ThemeProvider>
