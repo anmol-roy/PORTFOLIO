@@ -160,10 +160,9 @@ export default function AboutSection() {
       className="relative px-6 sm:px-10 lg:px-16 py-24 sm:py-32"
       style={{ background: "transparent" }}>
       <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap');
-        .font-syne { font-family: 'Syne', sans-serif; }
-        .font-dm   { font-family: 'DM Sans', sans-serif; }
-        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        .font-syne { font-family: var(--font-heading), sans-serif; }
+        .font-dm   { font-family: var(--font-dm), sans-serif; }
+        .font-mono { font-family: var(--font-mono-jb), monospace; }
         @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
       `}</style>
 
@@ -192,14 +191,10 @@ export default function AboutSection() {
                   </span>
                 </h2>
                 <p className="font-dm text-m leading-[1.9] mb-4" style={{ color: "var(--text-secondary)" }}>
-                  I&apos;m an AI &amp; ML developer from India, focused on
-                  building intelligent systems — from training models to shipping
-                  the products people use to interact with them.
+                  I'm a web developer focused on building modern websites and web applications — from creating user interfaces to developing complete, functional products.
                 </p>
                 <p className="font-dm text-sm leading-[1.9]" style={{ color: "var(--text-muted)" }}>
-                  I care about the full stack: clean architecture, fast
-                  interfaces, and models that actually work in production.
-                  Not just demos.
+                  I work across the full stack, building clean, responsive interfaces and reliable applications.
                 </p>
               </div>
               <div className="flex items-center gap-2 mt-6">
@@ -274,9 +269,9 @@ export default function AboutSection() {
             <GlowCard gradientIndex={3} className="p-6 h-full">
               <div className="mb-5"><SectionLabel>Core skills</SectionLabel></div>
               <div className="flex flex-col gap-3.5">
-                <SkillBar label="Machine Learning" pct={88} color="#93c5fd" delay={0.3} />
+                <SkillBar label="DSA" pct={68} color="#93c5fd" delay={0.3} />
                 <SkillBar label="React / Next.js"  pct={82} color="#c4b5fd" delay={0.4} />
-                <SkillBar label="Mobile (Flutter)" pct={75} color="#67e8f9" delay={0.5} />
+                <SkillBar label="Machine Learning" pct={75} color="#67e8f9" delay={0.5} />
                 <SkillBar label="Backend / APIs"   pct={79} color="#86efac" delay={0.6} />
                 <SkillBar label="UI / UX Design"   pct={70} color="#fca5a5" delay={0.7} />
               </div>

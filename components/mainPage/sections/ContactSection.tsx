@@ -14,16 +14,16 @@ const fadeUp = (delay = 0) => ({
 });
 
 const SOCIALS = [
-  { icon: Github,   label: "GitHub",   sub: "@anmol-roy",       href: "https://github.com/anmol-roy",           color: "#64748b", hoverBg: "rgba(100,116,139," },
-  { icon: Linkedin, label: "LinkedIn", sub: "anmol-kumar-roy",   href: "https://linkedin.com/in/anmol-kumar-roy", color: "#60a5fa", hoverBg: "rgba(96,165,250,"  },
+  { icon: Github,   label: "GitHub",   sub: "@anmol-Shandilya",       href: "https://github.com/anmol-roy",           color: "#64748b", hoverBg: "rgba(100,116,139," },
+  { icon: Linkedin, label: "LinkedIn", sub: "anmol-Shandilya",   href: "https://www.linkedin.com/in/anmolshandilya/", color: "#60a5fa", hoverBg: "rgba(96,165,250,"  },
   { icon: Twitter,  label: "Twitter",  sub: "@anmolroy_dev",     href: "https://twitter.com/anmolroy_dev",        color: "#67e8f9", hoverBg: "rgba(103,232,249," },
-  { icon: Mail,     label: "Email",    sub: "anmol@example.com", href: "mailto:anmol@example.com",               color: "#c4b5fd", hoverBg: "rgba(196,181,253," },
+  { icon: Mail,     label: "Email",    sub: "anmolroy***@gmail.com", href: "mailto:anmolroy112@gmail.com",               color: "#c4b5fd", hoverBg: "rgba(196,181,253," },
 ];
 
 const INFO_ITEMS = [
-  { icon: Mail,   color: "#c4b5fd", text: "anmol@example.com",           copyable: true  },
-  { icon: MapPin, color: "#f472b6", text: "India · Remote worldwide",    copyable: false },
-  { icon: Clock,  color: "#fbbf24", text: "IST (GMT +5:30) · <24h reply", copyable: false },
+  { icon: Mail,   color: "#c4b5fd", text: "anmolroy112@gmail.com",           copyable: true  },
+  { icon: MapPin, color: "#f472b6", text: "Bengluru · Remote worldwide",    copyable: false },
+  // { icon: Clock,  color: "#fbbf24", text: "IST (GMT +5:30) · <24h reply", copyable: false },
 ];
 
 type Status = "idle" | "sending" | "sent" | "error";
@@ -109,10 +109,9 @@ export default function ContactSection() {
   return (
     <section id="contact" className="relative px-6 sm:px-10 lg:px-16 py-14 sm:py-20" style={{ background: "transparent" }}>
       <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap');
-        .font-syne { font-family: 'Syne', sans-serif; }
-        .font-dm   { font-family: 'DM Sans', sans-serif; }
-        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        .font-syne { font-family: var(--font-heading), sans-serif; }
+        .font-dm   { font-family: var(--font-dm), sans-serif; }
+        .font-mono { font-family: var(--font-mono-jb), monospace; }
         @keyframes shimmer { from { background-position: 0% center; } to { background-position: 200% center; } }
       `}</style>
 

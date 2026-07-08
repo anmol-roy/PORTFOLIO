@@ -3,12 +3,14 @@
 import { useEffect, useState, useRef } from 'react'
 import { Code2, Menu, X, MessageCircle, ChevronRight } from 'lucide-react'
 import { motion, AnimatePresence, useMotionValue, useTransform } from 'framer-motion'
+import Link from 'next/link'
 
 interface HeaderProps {
   onScroll: (sectionId: string) => void
 }
 
-const links = [
+const links: { label: string; id?: string; href?: string }[] = [
+  { label: 'Home', href: '/' },
   { label: 'About', id: 'about' },
   { label: 'Services', id: 'services' },
   { label: 'Portfolio', id: 'portfolio' },
@@ -83,46 +85,47 @@ export function Header({ onScroll }: HeaderProps) {
           style={{ maxWidth: '1400px' }}
         >
           {/* ── Logo ── */}
-          <motion.button
-            onClick={() => onScroll('hero')}
-            className="flex items-center gap-3 group focus:outline-none"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.97 }}
-          >
-            {/* Icon mark */}
-            <div className="relative">
-              <div
-                className="w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(6,182,212,0.5)]"
+          <Link href="/">
+            <motion.div
+              className="flex items-center gap-3 group focus:outline-none cursor-pointer"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              {/* Icon mark */}
+              <div className="relative">
+                <div
+                  className="w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(6,182,212,0.5)]"
+                  style={{
+                    background: 'linear-gradient(135deg, #526686 0%, #4d5c71 100%)',
+                  }}
+                >
+                  <Code2 className="w-4 h-4" style={{ color: '#0a1612' }} />
+                </div>
+                {/* Glow dot */}
+                <div
+                  className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full border-2"
+                  style={{
+                    background: '#10b981',
+                    borderColor: '#0a1612',
+                    boxShadow: '0 0 8px rgba(16,185,129,0.8)',
+                  }}
+                />
+              </div>
+
+              {/* Wordmark */}
+              <span
+                className="text-lg font-bold tracking-tight"
                 style={{
-                  background: 'linear-gradient(135deg, #526686 0%, #4d5c71 100%)',
+                  background: 'linear-gradient(135deg, #e8f5f1 0%, #6ee7b7 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  letterSpacing: '-0.02em',
                 }}
               >
-                <Code2 className="w-4 h-4" style={{ color: '#0a1612' }} />
-              </div>
-              {/* Glow dot */}
-              <div
-                className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full border-2"
-                style={{
-                  background: '#10b981',
-                  borderColor: '#0a1612',
-                  boxShadow: '0 0 8px rgba(16,185,129,0.8)',
-                }}
-              />
-            </div>
-
-            {/* Wordmark */}
-            <span
-              className="text-lg font-bold tracking-tight"
-              style={{
-                background: 'linear-gradient(135deg, #e8f5f1 0%, #6ee7b7 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                letterSpacing: '-0.02em',
-              }}
-            >
-              Anmol
-            </span>
-          </motion.button>
+                Anmol
+              </span>
+            </motion.div>
+          </Link>
 
           {/* ── Desktop Nav ── */}
           <nav ref={navRef} className="hidden lg:flex items-center">
@@ -135,14 +138,43 @@ export function Header({ onScroll }: HeaderProps) {
               }}
             >
               {links.map((link) => {
+                if (link.href) {
+                  const isHovered = hoveredLink === link.label
+                  return (
+                    <Link key={link.label} href={link.href}>
+                      <div
+                        onMouseEnter={() => setHoveredLink(link.label)}
+                        onMouseLeave={() => setHoveredLink(null)}
+                        className="relative px-4 py-1.5 rounded-full text-sm font-medium transition-colors duration-200 cursor-pointer"
+                        style={{
+                          color: isHovered ? '#e8f5f1' : 'rgba(232,245,241,0.55)',
+                        }}
+                      >
+                        {isHovered && (
+                          <motion.div
+                            layoutId="nav-pill"
+                            className="absolute inset-0 rounded-full"
+                            style={{
+                              background: 'rgba(255,255,255,0.05)',
+                              border: '1px solid rgba(255,255,255,0.06)',
+                            }}
+                            transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                          />
+                        )}
+                        <span className="relative z-10">{link.label}</span>
+                      </div>
+                    </Link>
+                  )
+                }
+
                 const isActive = activeLink === link.id
                 const isHovered = hoveredLink === link.id
 
                 return (
                   <button
                     key={link.id}
-                    onClick={() => handleNavClick(link.id)}
-                    onMouseEnter={() => setHoveredLink(link.id)}
+                    onClick={() => handleNavClick(link.id!)}
+                    onMouseEnter={() => setHoveredLink(link.id!)}
                     onMouseLeave={() => setHoveredLink(null)}
                     className="relative px-4 py-1.5 rounded-full text-sm font-medium transition-colors duration-200 focus:outline-none"
                     style={{
@@ -289,27 +321,52 @@ export function Header({ onScroll }: HeaderProps) {
             >
               {/* Nav links */}
               <nav className="p-3">
-                {links.map((link, i) => (
-                  <motion.button
-                    key={link.id}
-                    onClick={() => handleNavClick(link.id)}
-                    className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-left text-sm font-medium transition-colors duration-150 group focus:outline-none"
-                    style={{ color: activeLink === link.id ? '#06b6d4' : 'rgba(232,245,241,0.7)' }}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.04, duration: 0.2 }}
-                    whileHover={{
-                      backgroundColor: 'rgba(6,182,212,0.07)',
-                      color: '#e8f5f1',
-                    }}
-                  >
-                    <span>{link.label}</span>
-                    <ChevronRight
-                      className="w-4 h-4 opacity-30 group-hover:opacity-60 transition-opacity"
-                      style={{ color: '#06b6d4' }}
-                    />
-                  </motion.button>
-                ))}
+                {links.map((link, i) => {
+                  if (link.href) {
+                    return (
+                      <Link key={link.label} href={link.href}>
+                        <motion.div
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: i * 0.04, duration: 0.2 }}
+                          className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-left text-sm font-medium transition-colors duration-150 group cursor-pointer"
+                          style={{ color: 'rgba(232,245,241,0.7)' }}
+                          whileHover={{
+                            backgroundColor: 'rgba(6,182,212,0.07)',
+                            color: '#e8f5f1',
+                          }}
+                        >
+                          <span>{link.label}</span>
+                          <ChevronRight
+                            className="w-4 h-4 opacity-30 group-hover:opacity-60 transition-opacity"
+                            style={{ color: '#06b6d4' }}
+                          />
+                        </motion.div>
+                      </Link>
+                    )
+                  }
+                  return (
+                    <motion.button
+                      key={link.id}
+                      onClick={() => handleNavClick(link.id!)}
+                      className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-left text-sm font-medium transition-colors duration-150 group focus:outline-none"
+                      style={{ color: activeLink === link.id ? '#06b6d4' : 'rgba(232,245,241,0.7)' }}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.04, duration: 0.2 }}
+                      whileHover={{
+                        backgroundColor: 'rgba(6,182,212,0.07)',
+                        color: '#e8f5f1',
+                      }}
+                    >
+                      <span>{link.label}</span>
+                      <ChevronRight
+                        className="w-4 h-4 opacity-30 group-hover:opacity-60 transition-opacity"
+                        style={{ color: '#06b6d4' }}
+                      />
+                    </motion.button>
+                  )
+                })}
               </nav>
 
               {/* Divider */}

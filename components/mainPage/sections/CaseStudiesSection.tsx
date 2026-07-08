@@ -361,10 +361,9 @@ export default function CaseStudiesSection() {
     <section id="case-studies" className="relative px-4 sm:px-8 lg:px-16 py-16 sm:py-24 lg:py-32"
       style={{ background: "transparent" }}>
       <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap');
-        .font-syne { font-family: 'Syne', sans-serif; }
-        .font-dm   { font-family: 'DM Sans', sans-serif; }
-        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        .font-syne { font-family: var(--font-heading), sans-serif; }
+        .font-dm   { font-family: var(--font-dm), sans-serif; }
+        .font-mono { font-family: var(--font-mono-jb), monospace; }
         .scrollbar-hide::-webkit-scrollbar { display: none; }
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
         @keyframes shimmer { from { background-position: 0% center; } to { background-position: 200% center; } }

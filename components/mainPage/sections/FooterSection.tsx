@@ -2,12 +2,14 @@
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { Github, Linkedin, Twitter, Mail, ArrowUp, Heart } from "lucide-react";
+import Link from "next/link";
 
 const LINKS = {
   nav: [
     { label: "Overview",     href: "#overview" },
     { label: "Projects",     href: "#projects" },
     { label: "Case Studies", href: "#case-studies" },
+    { label: "Solutions",    href: "/solutions" },
     { label: "Tech Stack",   href: "#tech-stack" },
     { label: "Achievements", href: "#achievements" },
     { label: "Contact",      href: "#contact" },
@@ -103,7 +105,7 @@ function BackToTop() {
 }
 
 function AnimatedTagline() {
-  const words = ["AI Engineer.", "Mobile Dev.", "Web Builder.", "Problem Solver."];
+  const words = ["AI Engineer.", "Polymath", "Web Builder.", "Problem Solver."];
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -113,7 +115,7 @@ function AnimatedTagline() {
 
   return (
     <div className="flex items-center gap-2 h-5 overflow-hidden">
-      <span className="text-sm" style={{ color: "var(--text-muted)" }}>I&apos;m an</span>
+      <span className="text-sm" style={{ color: "var(--text-muted)" }}>I&apos;m a</span>
       <AnimatePresence mode="wait">
         <motion.span
           key={index}
@@ -165,7 +167,7 @@ export default function FooterSection() {
             <AnimatedTagline />
             <p className="text-s leading-relaxed max-w-xs" style={{ color: "var(--text-muted)" }}>
               Building intelligent systems and crafting the interfaces people
-              use to interact with them. Based in India, working worldwide.
+              use to interact with them.
             </p>
           </motion.div>
 
@@ -186,7 +188,7 @@ export default function FooterSection() {
                   viewport={{ once: true }}
                   transition={{ delay: 0.1 + i * 0.04 }}
                 >
-                  <a
+                  <Link
                     href={link.href}
                     className="group flex items-center gap-2 text-xs transition-colors duration-200"
                     style={{ color: "var(--text-muted)" }}
@@ -199,7 +201,7 @@ export default function FooterSection() {
                       whileHover={{ width: 12 }}
                     />
                     {link.label}
-                  </a>
+                  </Link>
                 </motion.li>
               ))}
             </ul>
@@ -249,7 +251,7 @@ export default function FooterSection() {
             className="text-[13px] flex items-center gap-1.5"
             style={{ color: "var(--text-muted)" }}
           >
-            © {year} Anmol Roy &nbsp;·&nbsp; Made with
+            © {year} Anmol Roy &nbsp;·&nbsp; 
             <motion.span
               animate={{ scale: [1, 1.25, 1] }}
               transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
@@ -257,7 +259,7 @@ export default function FooterSection() {
             >
               <Heart className="h-3 w-3 text-rose-400/60 fill-rose-400/60" />
             </motion.span>
-            in India
+            
           </motion.p>
 
           <div className="flex items-center gap-3">

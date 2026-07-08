@@ -19,15 +19,45 @@ export default function HeroSection() {
   return (
     <>
       <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap');
-        .font-syne    { font-family: 'Syne', sans-serif; }
-        .font-dm      { font-family: 'DM Sans', sans-serif; }
-        .font-mono-jb { font-family: 'JetBrains Mono', monospace; }
+        .font-syne    { font-family: var(--font-heading), sans-serif; }
+        .font-dm      { font-family: var(--font-dm), sans-serif; }
+        .font-mono-jb { font-family: var(--font-mono-jb), monospace; }
         @keyframes shimmer {
           from { background-position: 0% center; }
           to   { background-position: 200% center; }
         }
       `}</style>
+
+      {/* JSON-LD Person Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Anmol Roy",
+            "jobTitle": "AI & ML Engineer",
+            "url": "https://anmolroy.dev",
+            "image": "https://anmolroy.dev/images/githubdp.jpg",
+            "sameAs": [
+              "https://github.com/anmol-roy",
+              "https://linkedin.com/in/anmol-kumar-roy",
+              "https://twitter.com/anmolroy_dev"
+            ],
+            "knowsAbout": [
+              "Machine Learning",
+              "Artificial Intelligence",
+              "Next.js",
+              "React",
+              "TypeScript",
+              "Flutter",
+              "Python",
+              "FastAPI"
+            ],
+            "description": "AI & ML developer focusing on training models and shipping full-stack production systems."
+          })
+        }}
+      />
 
       <section
         className="font-dm relative flex min-h-screen flex-col items-center justify-center px-6 sm:px-10 lg:px-16 overflow-hidden"
@@ -71,35 +101,35 @@ export default function HeroSection() {
               </p>
               <h1 className="font-syne text-[clamp(3.2rem,7.8vw,5.4rem)] font-black leading-[0.92] tracking-[-0.02em]" style={{ color: "var(--text-primary)" }}>
                 Anmol
-              </h1>
-              <div className="flex flex-wrap items-baseline gap-3 mt-1">
-                <h1
-                  className="font-syne text-[clamp(3.2rem,7.8vw,5.4rem)] font-black leading-[0.92] tracking-[-0.02em] bg-clip-text text-transparent"
-                  style={{ backgroundImage: "linear-gradient(112deg, #60a5fa 0%, #818cf8 30%, #c084fc 62%, #e879f9 100%)" }}
-                >
-                  Roy
-                </h1>
-                <motion.span
-                  {...reveal(0.26)}
-                  className="hidden sm:inline-flex items-center gap-1.5 self-center rounded-lg px-2.5 py-1"
-                  style={{ 
-                    background: "rgba(129,140,248,0.12)", 
-                    border: "1px solid rgba(129,140,248,0.28)" 
-                  }}
-                >
-                  <Sparkles className="h-2.5 w-2.5" style={{ color: "#a5b4fc" }} />
-                  <span className="font-mono-jb text-[9px] tracking-[0.14em] uppercase" style={{ color: "rgba(165,180,252,0.9)" }}>
-                    AI Engineer
+                <span className="flex flex-wrap items-baseline gap-3 mt-1 justify-center md:justify-start">
+                  <span
+                    className="bg-clip-text text-transparent"
+                    style={{ backgroundImage: "linear-gradient(112deg, #60a5fa 0%, #818cf8 30%, #c084fc 62%, #e879f9 100%)" }}
+                  >
+                    Roy
                   </span>
-                </motion.span>
-              </div>
+                  <motion.span
+                    {...reveal(0.26)}
+                    className="hidden sm:inline-flex items-center gap-1.5 self-center rounded-lg px-2.5 py-1"
+                    style={{ 
+                      background: "rgba(129,140,248,0.12)", 
+                      border: "1px solid rgba(129,140,248,0.28)" 
+                    }}
+                  >
+                    <Sparkles className="h-2.5 w-2.5" style={{ color: "#a5b4fc" }} />
+                    <span className="font-mono-jb text-[9px] tracking-[0.14em] uppercase" style={{ color: "rgba(165,180,252,0.9)" }}>
+                      An Engineer
+                    </span>
+                  </motion.span>
+                </span>
+              </h1>
             </motion.div>
 
             {/* Role line */}
             <motion.div {...reveal(0.17)} className="mb-5 flex items-center gap-3">
               <div className="h-px w-5" style={{ background: "var(--divider)" }} />
               <p className="font-dm text-sm sm:text-[15px] font-light italic tracking-wide" style={{ color: "var(--text-muted)" }}>
-                AI &amp; ML &nbsp;·&nbsp; Mobile &amp; Web
+                AI &amp; Web
               </p>
             </motion.div>
 
@@ -109,9 +139,8 @@ export default function HeroSection() {
               className="font-dm mb-8 max-w-[400px] text-sm sm:text-[14.5px] leading-[1.9] font-light"
               style={{ color: "var(--text-tertiary)" }}
             >
-              I build intelligent systems and craft the interfaces people use to
-              interact with them — from training models to shipping the products,
-              end to end, with attention to every detail.
+              I build modern web experiences and craft the interfaces people use to interact with them — from writing clean, scalable code to shipping complete products end to end, with attention to every detail.
+
             </motion.p>
 
             {/* CTAs */}
@@ -201,7 +230,7 @@ export default function HeroSection() {
 
               <div className="font-mono-jb flex items-center gap-1.5 text-[13px]" style={{ color: "var(--text-secondary)" }}>
                 <MapPin className="h-2.5 w-2.5" style={{ color: "var(--text-muted)" }} />
-                <span style={{ color: "var(--text-secondary)" }}>India · Remote</span>
+                <span style={{ color: "var(--text-secondary)" }}>Bengluru · Remote</span>
               </div>
             </motion.div>
           </div>
@@ -246,11 +275,11 @@ export default function HeroSection() {
                 />
                 {/* Name tag — always dark glass since it's over photo */}
                 <div className="absolute bottom-3 left-3 right-3 z-20">
-                  <div className="rounded-lg px-3 py-2"
+                  {/* <div className="rounded-lg px-3 py-2"
                     style={{ background: "rgba(0,0,0,0.55)", backdropFilter: "blur(14px)", border: "1px solid rgba(255,255,255,0.1)" }}>
                     <p className="font-syne text-[11px] font-bold text-white leading-none mb-0.5">Anmol Roy</p>
                     <p className="font-mono-jb text-[9px] text-white/50 tracking-wide">AI &amp; ML Developer</p>
-                  </div>
+                  </div> */}
                 </div>
               </div>
 
@@ -277,7 +306,7 @@ export default function HeroSection() {
                     <Cpu className="h-4 w-4" style={{ color: "#f59e0b" }} />
                   </div>
                   <div>
-                    <p className="font-syne text-sm font-bold leading-none mb-0.5" style={{ color: "var(--text-primary)" }}>20+</p>
+                    <p className="font-syne text-sm font-bold leading-none mb-0.5" style={{ color: "var(--text-primary)" }}>7+</p>
                     <p className="font-mono-jb text-[9px] tracking-wide uppercase" style={{ color: "var(--text-muted)" }}>Projects shipped</p>
                   </div>
                 </div>

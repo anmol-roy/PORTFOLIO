@@ -100,6 +100,35 @@ export function HeroSection({ onScroll }: HeroSectionProps) {
       onMouseMove={handleMouseMove}
       ref={containerRef}
     >
+      {/* JSON-LD ProfessionalService Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ProfessionalService",
+            "name": "Anmol Roy Digital Solutions",
+            "image": "https://anmolroy.dev/images/githubdp.jpg",
+            "url": "https://anmolroy.dev/solutions",
+            "telephone": "+1-234-567-890",
+            "priceRange": "$$",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Mumbai",
+              "addressRegion": "MH",
+              "addressCountry": "IN"
+            },
+            "provider": {
+              "@type": "Person",
+              "name": "Anmol Roy"
+            },
+            "serviceType": "Web Development Services",
+            "areaServed": "Worldwide",
+            "description": "Specializing in high-converting, performance-obsessed websites for local businesses including restaurants, gyms, and institutes."
+          })
+        }}
+      />
+
       {/* ── Background ── */}
       {/* Radial glow top-left */}
       <div
@@ -160,36 +189,39 @@ export function HeroSection({ onScroll }: HeroSectionProps) {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.1, delay: 0.1 }}
             >
-              {[
-                { text: 'Anmol.', style: { color: '#e8f5f1' }, delay: 0.1 },
-                { text: 'I build', gradient: true, delay: 0.2 },
-                { text: 'digital', style: { color: '#e8f5f1' }, delay: 0.3 },
-                { text: 'empires.', italic: true, delay: 0.4 },
-              ].map((line, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }}
-                  animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                  transition={{ duration: 0.7, delay: line.delay, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  <h1
-                    className={`text-5xl md:text-6xl lg:text-7xl font-black leading-[1.02] tracking-tight ${line.italic ? 'italic font-light' : ''}`}
-                    style={
-                      line.gradient
-                        ? {
-                            background: 'linear-gradient(135deg, #22aaee 0%, #1075b9 50%, #6e7ce7 100%)',
-                            WebkitBackgroundClip: 'text',
-                            WebkitTextFillColor: 'transparent',
-                          }
-                        : line.italic
-                        ? { color: 'rgba(232,245,241,0.35)', fontWeight: 300 }
-                        : line.style
-                    }
+              <h1 className="sr-only">Anmol Roy | Freelance Web Developer Solutions</h1>
+              <div className="flex flex-col">
+                {[
+                  { text: 'Anmol.', style: { color: '#e8f5f1' }, delay: 0.1 },
+                  { text: 'I build', gradient: true, delay: 0.2 },
+                  { text: 'digital', style: { color: '#e8f5f1' }, delay: 0.3 },
+                  { text: 'empires.', italic: true, delay: 0.4 },
+                ].map((line, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }}
+                    animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                    transition={{ duration: 0.7, delay: line.delay, ease: [0.22, 1, 0.36, 1] }}
                   >
-                    {line.text}
-                  </h1>
-                </motion.div>
-              ))}
+                    <span
+                      className={`block text-5xl md:text-6xl lg:text-7xl font-black leading-[1.02] tracking-tight ${line.italic ? 'italic font-light' : ''}`}
+                      style={
+                        line.gradient
+                          ? {
+                              background: 'linear-gradient(135deg, #22aaee 0%, #1075b9 50%, #6e7ce7 100%)',
+                              WebkitBackgroundClip: 'text',
+                              WebkitTextFillColor: 'transparent',
+                            }
+                          : line.italic
+                          ? { color: 'rgba(232,245,241,0.35)', fontWeight: 300 }
+                          : line.style
+                      }
+                    >
+                      {line.text}
+                    </span>
+                  </motion.div>
+                ))}
+              </div>
             </motion.div>
 
             {/* Description */}

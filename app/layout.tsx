@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, Syne, Space_Grotesk, Playfair_Display, Poppins } from 'next/font/google'
+import { Inter, Syne, Space_Grotesk, Playfair_Display, Poppins, DM_Sans, JetBrains_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { ThemeProvider } from '@/lib/contexts/ThemeContext'
 import './globals.css'
@@ -9,6 +9,8 @@ const syne = Syne({ subsets: ['latin'], variable: '--font-heading', weight: ['40
 const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], variable: '--font-accent' })
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-serif' })
 const poppins = Poppins({ subsets: ['latin'], variable: '--font-display', weight: ['600', '700', '800'] })
+const dmSans = DM_Sans({ subsets: ['latin'], variable: '--font-dm', weight: ['300', '400', '500', '700'] })
+const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono-jb', weight: ['400', '500'] })
 
 export const viewport: Viewport = {
   themeColor: '#0a0339',
@@ -17,25 +19,84 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  title: 'Anmol - Freelance Web Developer',
-  description: 'Build amazing web experiences with modern design and performance',
-  generator: 'v0.app',
+  title: 'Anmol Roy ',
+  description: 'Build amazing, high-performance web experiences with cutting-edge AI integration and modern layout design.',
+  generator: 'Anmol ',
+  metadataBase: new URL('https://anmolroy.dev'),
+  keywords: [
+    'Next.js',
+    'React',
+    'TypeScript',
+    'Tailwind CSS',
+    'Vercel',
+    'AI Integration',
+    'Web Development',
+    'Frontend Development',
+    'UI/UX Design',
+    'Performance Optimization',
+    'Modern Web Apps',
+    'Anmol Roy',
+    'Portfolio Website',
+    'Developer Portfolio',
+    'Web Designer',
+    'Creative Developer',
+    'Tech Portfolio',
+    'AI Developer',
+    'Full Stack Developer',
+    'Frontend Engineer',
+    'Responsive Design',
+    'SEO Optimized',
+    'Vercel Deploy',
+    'NextJS Portfolio',
+    'Developer Blog',
+    'Coding Portfolio',
+    'JavaScript Developer',
+    'React Developer',
+    'TypeScript Developer',
+  ],
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title: 'Anmol Roy | AI & Web Developer Portfolio',
+    description: 'Custom, high-performing websites and AI integrations engineered for growth and search visibility.',
+    url: 'https://anmolroy.dev',
+    siteName: 'Anmol Roy |  AI & Web Developer',
+    
+    images: [
+      {
+        url: '/images/githubdp.jpg',
+        width: 800,
+        height: 800,
+        alt: 'Anmol Roy - AI & Web Developer',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Anmol Roy |  AI & Web Developer',
+    description: 'Custom, high-performing websites and AI integrations engineered for growth and search visibility.',
+    creator: '@anmolroy_dev',
+    images: ['/images/githubdp.jpg'],
+  },
   icons: {
     icon: [
       {
-        url: '/icon-light-32x32.png',
+        url: '/images/mylogo.svg',
+        type: 'image/svg+xml',
+      },
+      {
+        url: '/images/mylogo.svg',
         media: '(prefers-color-scheme: light)',
       },
       {
-        url: '/icon-dark-32x32.png',
+        url: '/images/mylogo.svg',
         media: '(prefers-color-scheme: dark)',
       },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
     ],
-    apple: '/apple-icon.png',
+    apple: '/images/mylogo.svg',
   },
 }
 
@@ -45,12 +106,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${syne.variable} ${spaceGrotesk.variable} ${playfair.variable} ${poppins.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${syne.variable} ${spaceGrotesk.variable} ${playfair.variable} ${poppins.variable} ${dmSans.variable} ${jetbrainsMono.variable}`}>
       <head>
-        <link 
-          href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap" 
-          rel="stylesheet" 
-        />
         <meta name="theme-color" content="#0a0339" />
       </head>
       <body className="font-body bg-background text-foreground antialiased">

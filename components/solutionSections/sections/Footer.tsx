@@ -3,12 +3,14 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { Code2, Github, Linkedin, Mail, Twitter, ArrowUpRight, MessageCircle } from 'lucide-react'
+import Link from 'next/link'
 
 interface FooterProps {
   onScroll: (sectionId: string) => void
 }
 
-const navLinks = [
+const navLinks: { label: string; id?: string; href?: string }[] = [
+  { label: 'Home', href: '/' },
   { label: 'About', id: 'about' },
   { label: 'Services', id: 'services' },
   { label: 'Portfolio', id: 'portfolio' },
@@ -209,16 +211,29 @@ export function Footer({ onScroll }: FooterProps) {
             </p>
             <ul className="space-y-3">
               {navLinks.map((link) => (
-                <li key={link.id}>
-                  <motion.button
-                    onClick={() => onScroll(link.id)}
-                    className="text-[13px] font-medium focus:outline-none transition-colors duration-200"
-                    style={{ color: 'rgba(232,245,241,0.45)' }}
-                    whileHover={{ color: '#e8f5f1', x: 3 }}
-                    transition={{ duration: 0.15 }}
-                  >
-                    {link.label}
-                  </motion.button>
+                <li key={link.label}>
+                  {link.href ? (
+                    <Link href={link.href}>
+                      <motion.div
+                        className="text-[13px] font-medium transition-colors duration-200 cursor-pointer"
+                        style={{ color: 'rgba(232,245,241,0.45)' }}
+                        whileHover={{ color: '#e8f5f1', x: 3 }}
+                        transition={{ duration: 0.15 }}
+                      >
+                        {link.label}
+                      </motion.div>
+                    </Link>
+                  ) : (
+                    <motion.button
+                      onClick={() => onScroll(link.id!)}
+                      className="text-[13px] font-medium focus:outline-none transition-colors duration-200"
+                      style={{ color: 'rgba(232,245,241,0.45)' }}
+                      whileHover={{ color: '#e8f5f1', x: 3 }}
+                      transition={{ duration: 0.15 }}
+                    >
+                      {link.label}
+                    </motion.button>
+                  )}
                 </li>
               ))}
             </ul>

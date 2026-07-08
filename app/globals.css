@@ -42,7 +42,7 @@
   /* Portfolio-specific light tokens - IMPROVED CONTRAST */
   --header-bg-from: rgba(255, 255, 255, 0.92);
   --header-bg-to: rgba(241, 245, 249, 0.88);
-  --header-border: rgba(79, 70, 229, 0.12);
+  --header-border: rgba(33, 28, 125, 0);
   --header-shadow: rgba(79, 70, 229, 0.06);
   --nav-active: #4f46e5;
   --nav-inactive: #475569;

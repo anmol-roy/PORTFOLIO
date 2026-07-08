@@ -139,6 +139,26 @@ export default function ModernHeader({ activeSection, setActiveSection }: Modern
       ),
     },
     {
+      id: "solutions",
+      label: "Solutions",
+      href: "/solutions",
+      icon: (
+        <svg
+          className="w-4 h-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+          />
+        </svg>
+      ),
+    },
+    {
       id: "tech-stack",
       label: "Tech Stack",
       icon: (
@@ -410,22 +430,12 @@ export default function ModernHeader({ activeSection, setActiveSection }: Modern
           <div className="flex justify-between mx-3 lg:mx-5 my-3">
             <div>
               <div className="flex items-center space-x-2 lg:space-x-4">
-                <div className="relative">
-                  <div className="absolute -inset-1 rounded-full bg-linear-to-r from-blue-500 to-purple-500 opacity-20 blur-sm"></div>
-                  <div className="relative flex h-8 w-8 lg:h-10 lg:w-10 items-center justify-center rounded-full bg-[#0a0339] border border-white/20">
-                    <Link href="/" className="flex items-center justify-center">
-                      <Image
-                        src="https://anuragsinghbam.com/images/name-logo-white.svg"
-                        alt="Logo"
-                        width={32}
-                        height={32}
-                        className="w-6 h-6 lg:w-8 lg:h-8 brightness-110 drop-shadow-[0_0_8px_rgba(59,130,246,0.8)]"
-                      />
-                    </Link>
-                  </div>
-                </div>
+                {/* Desktop/Tablet: name only, no logo */}
                 <div className="flex flex-col">
-                  <span className="font-bold text-base lg:text-lg tracking-tight bg-linear-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                  <span
+                    className="bg-clip-text text-transparent text-2xl font-bold"
+                    style={{ backgroundImage: "linear-gradient(112deg, #60a5fa 0%, #818cf8 30%, #c084fc 62%, #e879f9 100%)" }}
+                  >
                     Anmol Roy
                   </span>
                 </div>
@@ -760,31 +770,42 @@ export default function ModernHeader({ activeSection, setActiveSection }: Modern
                 <ul className="flex items-center space-x-1">
                   {navItems.map((item) => (
                     <li key={item.id}>
-                      <motion.button
-                        onClick={() => { setActiveSection(item.id); scrollToSection(item.id); }}
-                        whileHover={{ scale: 1.02, y: -1 }}
-                        whileTap={{ scale: 0.98 }}
-                        className={`relative px-2 lg:px-3 py-2.5 text-xs lg:text-sm font-medium transition-all duration-300 flex items-center space-x-1 rounded-lg mx-0 ${
-                          activeSection === item.id
-                            ? "text-(--nav-active)"
-                            : "text-(--nav-inactive) hover:text-(--nav-active) hover:bg-(--nav-hover-bg)"
-                        }`}
-                        aria-current={activeSection === item.id ? "page" : undefined}
-                      >
-                        {item.icon}
-                        <span className="font-medium">{item.label}</span>
-                        {activeSection === item.id && (
-                          <motion.div
-                            layoutId="activeSection"
-                            className="absolute bottom-0 left-0 right-0 h-0.5 bg-linear-to-r from-blue-400 to-purple-400 shadow-[0_0_6px_rgba(139,92,246,0.6)]"
-                            transition={{
-                              type: "spring",
-                              bounce: 0.2,
-                              duration: 0.6,
-                            }}
-                          />
-                        )}
-                      </motion.button>
+                      {item.href ? (
+                        <Link href={item.href}>
+                          <div
+                            className="relative px-2 lg:px-3 py-2.5 text-xs lg:text-sm font-medium transition-all duration-300 flex items-center space-x-1 rounded-lg mx-0 text-(--nav-inactive) hover:text-(--nav-active) hover:bg-(--nav-hover-bg) cursor-pointer"
+                          >
+                            {item.icon}
+                            <span className="font-medium">{item.label}</span>
+                          </div>
+                        </Link>
+                      ) : (
+                        <motion.button
+                          onClick={() => { setActiveSection(item.id); scrollToSection(item.id); }}
+                          whileHover={{ scale: 1.02, y: -1 }}
+                          whileTap={{ scale: 0.98 }}
+                          className={`relative px-2 lg:px-3 py-2.5 text-xs lg:text-sm font-medium transition-all duration-300 flex items-center space-x-1 rounded-lg mx-0 ${
+                            activeSection === item.id
+                              ? "text-(--nav-active)"
+                              : "text-(--nav-inactive) hover:text-(--nav-active) hover:bg-(--nav-hover-bg)"
+                          }`}
+                          aria-current={activeSection === item.id ? "page" : undefined}
+                        >
+                          {item.icon}
+                          <span className="font-medium">{item.label}</span>
+                          {activeSection === item.id && (
+                            <motion.div
+                              layoutId="activeSection"
+                              className="absolute bottom-0 left-0 right-0 h-0.5 bg-linear-to-r from-blue-400 to-purple-400 shadow-[0_0_6px_rgba(139,92,246,0.6)]"
+                              transition={{
+                                type: "spring",
+                                bounce: 0.2,
+                                duration: 0.6,
+                              }}
+                            />
+                          )}
+                        </motion.button>
+                      )}
                     </li>
                   ))}
                 </ul>
@@ -799,31 +820,42 @@ export default function ModernHeader({ activeSection, setActiveSection }: Modern
                 <ul className="flex items-center space-x-1 py-2">
                   {navItems.map((item) => (
                     <li key={item.id} className="shrink-0">
-                      <motion.button
-                        onClick={() => { setActiveSection(item.id); scrollToSection(item.id); }}
-                        whileHover={{ scale: 1.02, y: -1 }}
-                        whileTap={{ scale: 0.98 }}
-                        className={`relative px-2 py-2 text-xs font-medium transition-all duration-300 flex items-center space-x-1 rounded-lg ${
-                          activeSection === item.id
-                            ? "text-(--nav-active)"
-                            : "text-(--nav-inactive) hover:text-(--nav-active) hover:bg-(--nav-hover-bg)"
-                        }`}
-                        aria-current={activeSection === item.id ? "page" : undefined}
-                      >
-                        {item.icon}
-                        <span className="font-medium whitespace-nowrap">{item.label}</span>
-                        {activeSection === item.id && (
-                          <motion.div
-                            layoutId="activeSectionTablet"
-                            className="absolute bottom-0 left-0 right-0 h-0.5 bg-linear-to-r from-blue-400 to-purple-400 shadow-[0_0_6px_rgba(139,92,246,0.6)]"
-                            transition={{
-                              type: "spring",
-                              bounce: 0.2,
-                              duration: 0.6,
-                            }}
-                          />
-                        )}
-                      </motion.button>
+                      {item.href ? (
+                        <Link href={item.href}>
+                          <div
+                            className="relative px-2 py-2 text-xs font-medium transition-all duration-300 flex items-center space-x-1 rounded-lg text-(--nav-inactive) hover:text-(--nav-active) hover:bg-(--nav-hover-bg) cursor-pointer"
+                          >
+                            {item.icon}
+                            <span className="font-medium whitespace-nowrap">{item.label}</span>
+                          </div>
+                        </Link>
+                      ) : (
+                        <motion.button
+                          onClick={() => { setActiveSection(item.id); scrollToSection(item.id); }}
+                          whileHover={{ scale: 1.02, y: -1 }}
+                          whileTap={{ scale: 0.98 }}
+                          className={`relative px-2 py-2 text-xs font-medium transition-all duration-300 flex items-center space-x-1 rounded-lg ${
+                            activeSection === item.id
+                              ? "text-(--nav-active)"
+                              : "text-(--nav-inactive) hover:text-(--nav-active) hover:bg-(--nav-hover-bg)"
+                          }`}
+                          aria-current={activeSection === item.id ? "page" : undefined}
+                        >
+                          {item.icon}
+                          <span className="font-medium whitespace-nowrap">{item.label}</span>
+                          {activeSection === item.id && (
+                            <motion.div
+                              layoutId="activeSectionTablet"
+                              className="absolute bottom-0 left-0 right-0 h-0.5 bg-linear-to-r from-blue-400 to-purple-400 shadow-[0_0_6px_rgba(139,92,246,0.6)]"
+                              transition={{
+                                type: "spring",
+                                bounce: 0.2,
+                                duration: 0.6,
+                              }}
+                            />
+                          )}
+                        </motion.button>
+                      )}
                     </li>
                   ))}
                 </ul>
@@ -837,24 +869,20 @@ export default function ModernHeader({ activeSection, setActiveSection }: Modern
           <div className="flex justify-between items-center mx-3 my-3">
             {/* Logo and Name */}
             <div className="flex items-center space-x-2">
+              {/* Mobile: logo only, no name */}
               <div className="relative">
                 <div className="absolute -inset-1 rounded-full bg-linear-to-r from-blue-500 to-purple-500 opacity-20 blur-sm"></div>
-                <div className="relative flex h-8 w-8 items-center justify-center rounded-full bg-[#0a0339] border border-white/20">
+                <div className="relative flex h-9 w-9 items-center justify-center rounded-full border border-white/20" style={{ background: "var(--header-bg-from)" }}>
                   <Link href="/" className="flex items-center justify-center">
                     <Image
-                      src="https://anuragsinghbam.com/images/name-logo-white.svg"
-                      alt="Logo"
-                      width={24}
-                      height={24}
-                      className="w-6 h-6 brightness-110 drop-shadow-[0_0_8px_rgba(59,130,246,0.8)]"
+                      src="/images/mylogo.svg"
+                      alt="Anmol Roy"
+                      width={28}
+                      height={28}
+                      className="w-6 h-6"
                     />
                   </Link>
                 </div>
-              </div>
-              <div className="flex flex-col">
-                <span className="font-bold text-sm tracking-tight bg-linear-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                  Anmol Roy
-                </span>
               </div>
             </div>
 
@@ -953,23 +981,38 @@ export default function ModernHeader({ activeSection, setActiveSection }: Modern
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: index * 0.05 }}
                         >
-                          <button
-                            onClick={() => handleMobileNavClick(item.id)}
-                            className={`flex items-center space-x-3 w-full px-3 py-3 text-sm rounded-lg transition-all duration-200 border ${
-                              activeSection === item.id
-                                ? "border-white/20"
-                                : "border-transparent"
-                            }`}
-                            style={{
-                              color: activeSection === item.id ? "var(--text-primary)" : "var(--text-secondary)",
-                              background: activeSection === item.id ? "var(--hover-bg)" : "transparent",
-                            }}
-                          >
-                            <div className="flex items-center justify-center w-5 h-5" style={{ color: "var(--text-secondary)" }}>
-                              {item.icon}
-                            </div>
-                            <span className="font-medium">{item.label}</span>
-                          </button>
+                          {item.href ? (
+                            <Link href={item.href}>
+                              <div
+                                onClick={toggleMobileMenu}
+                                className="flex items-center space-x-3 w-full px-3 py-3 text-sm rounded-lg transition-all duration-200 border border-transparent hover:bg-white/5 cursor-pointer"
+                                style={{ color: "var(--text-secondary)" }}
+                              >
+                                <div className="flex items-center justify-center w-5 h-5" style={{ color: "var(--text-secondary)" }}>
+                                  {item.icon}
+                                </div>
+                                <span className="font-medium">{item.label}</span>
+                              </div>
+                            </Link>
+                          ) : (
+                            <button
+                              onClick={() => handleMobileNavClick(item.id)}
+                              className={`flex items-center space-x-3 w-full px-3 py-3 text-sm rounded-lg transition-all duration-200 border ${
+                                activeSection === item.id
+                                  ? "border-white/20"
+                                  : "border-transparent"
+                              }`}
+                              style={{
+                                color: activeSection === item.id ? "var(--text-primary)" : "var(--text-secondary)",
+                                background: activeSection === item.id ? "var(--hover-bg)" : "transparent",
+                              }}
+                            >
+                              <div className="flex items-center justify-center w-5 h-5" style={{ color: "var(--text-secondary)" }}>
+                                  {item.icon}
+                              </div>
+                              <span className="font-medium">{item.label}</span>
+                            </button>
+                          )}
                         </motion.li>
                       ))}
                     </ul>
