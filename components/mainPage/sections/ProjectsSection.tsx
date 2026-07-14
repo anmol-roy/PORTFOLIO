@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useRef, useCallback } from "react";
 import {
   ExternalLink, Github, ArrowUpRight, ChevronRight,
-  Cpu, Globe, Smartphone, Terminal, Database, Layers
+  Cpu, Globe, Smartphone, Terminal, Database, Layers, GraduationCap, HeartPulse, Box, FileSearch, Activity, Brain
 } from "lucide-react";
 
 const fadeUp = (delay = 0) => ({
@@ -20,7 +20,7 @@ interface Project {
   title: string;
   tagline: string;
   description: string;
-  category: Category;
+  category: Category | Category[];
   tags: string[];
   tagColors: string[];
   accent: string;
@@ -38,134 +38,166 @@ interface Project {
 const PROJECTS: Project[] = [
   {
     id: 1,
-    title: "NeuralChat",
-    tagline: "Conversational AI with memory",
-    description: "A production-grade chatbot platform with long-term memory, RAG-powered knowledge retrieval, and a real-time streaming UI. Handles 10k+ daily conversations.",
+    title: "AI Interview Prep",
+    tagline: "Personalized AI interview coach powered by your resume",
+    description:
+      "An AI-powered interview preparation platform that analyzes resumes and job descriptions to generate personalized interview reports, technical and behavioral questions, skill gap analysis, ATS scores, and structured preparation roadmaps within seconds.",
     category: "AI/ML",
-    tags: ["Python", "FastAPI", "React", "pgvector", "LangChain"],
-    tagColors: ["#60a5fa", "#34d399", "#67e8f9", "#c084fc", "#fbbf24"],
-    accent: "#93c5fd",
-    accentMuted: "rgba(147,197,253,0.06)",
-    icon: Cpu,
-    iconColor: "#93c5fd",
-    year: "2024",
+    tags: ["React", "Node.js", "Express", "MongoDB", "Gemini AI", "JWT"],
+    tagColors: ["#60a5fa", "#34d399", "#c084fc", "#fbbf24", "#fb923c", "#86efac"],
+    accent: "#60a5fa",
+    accentMuted: "rgba(96,165,250,0.06)",
+    icon: Brain,
+    iconColor: "#60a5fa",
+    year: "2026",
     status: "Live",
     featured: true,
     liveUrl: "#",
     githubUrl: "#",
     metrics: [
-      { label: "Daily users",  value: "10k+",  color: "#60a5fa" },
-      { label: "Avg latency",  value: "320ms", color: "#34d399" },
-      { label: "Accuracy",     value: "94%",   color: "#c084fc" },
+      { label: "Interview Report", value: "~30s", color: "#60a5fa" },
+      { label: "AI Questions", value: "15+", color: "#34d399" },
+      { label: "Resume Match", value: "0–100", color: "#c084fc" },
     ],
   },
+
   {
     id: 2,
-    title: "FlowDash",
-    tagline: "Real-time analytics dashboard",
-    description: "A Next.js dashboard for monitoring ML model performance in production. Live metrics, drift detection alerts, and one-click rollback.",
-    category: "Web",
-    tags: ["Next.js", "TypeScript", "Recharts", "Supabase"],
-    tagColors: ["#e2e8f0", "#60a5fa", "#f472b6", "#34d399"],
-    accent: "#c4b5fd",
-    accentMuted: "rgba(196,181,253,0.06)",
-    icon: Globe,
-    iconColor: "#c4b5fd",
-    year: "2024",
-    status: "Open Source",
+    title: "GlucoAI",
+    tagline: "AI-powered non-invasive blood glucose prediction",
+    description:
+      "A machine learning research prototype that predicts blood glucose levels from PPG signals and blood pressure data. Features real-time waveform visualization, an AI prediction pipeline, trend forecasting, and interactive health reports.",
+    category: "AI/ML",
+    tags: ["JavaScript", "HTML/CSS", "XGBoost", "LSTM", "Chart.js", "Machine Learning"],
+    tagColors: ["#fbbf24", "#60a5fa", "#34d399", "#c084fc", "#fb923c", "#86efac"],
+    accent: "#34d399",
+    accentMuted: "rgba(52,211,153,0.06)",
+    icon: Activity,
+    iconColor: "#34d399",
+    year: "2026",
+    status: "Research Prototype",
+    featured: true,
     liveUrl: "#",
     githubUrl: "#",
     metrics: [
-      { label: "GitHub stars", value: "340+", color: "#fbbf24" },
-      { label: "Forks",        value: "52",   color: "#c4b5fd" },
+      { label: "ML Models", value: "5", color: "#34d399" },
+      { label: "Prediction", value: "<2s", color: "#60a5fa" },
+      { label: "Primary Model", value: "XGBoost", color: "#c084fc" },
     ],
   },
+
   {
     id: 3,
-    title: "Pocketlens",
-    tagline: "On-device image recognition",
-    description: "Flutter app that runs a MobileNet model entirely on-device — no API calls. Classifies 1000+ objects in under 80ms.",
-    category: "Mobile",
-    tags: ["Flutter", "TensorFlow Lite", "Dart"],
-    tagColors: ["#67e8f9", "#fb923c", "#60a5fa"],
-    accent: "#67e8f9",
-    accentMuted: "rgba(103,232,249,0.06)",
-    icon: Smartphone,
-    iconColor: "#67e8f9",
-    year: "2023",
-    status: "Live",
+    title: "BP Estimator",
+    tagline: "Mobile blood pressure estimation using on-device AI",
+    description:
+      "A cross-platform Flutter application that estimates systolic and diastolic blood pressure from PPG signals using a TensorFlow Lite model. Demonstrates on-device machine learning inference with real-time predictions and a responsive Material Design interface.",
+    category: ["AI/ML", "Mobile"],
+    tags: ["Flutter", "Dart", "TensorFlow Lite", "Machine Learning", "PPG", "Material Design"],
+    tagColors: ["#60a5fa", "#67e8f9", "#34d399", "#c084fc", "#fb923c", "#fbbf24"],
+    accent: "#fb7185",
+    accentMuted: "rgba(251,113,133,0.06)",
+    icon: HeartPulse,
+    iconColor: "#fb7185",
+    year: "2026",
+    status: "Research Prototype",
+    featured: false,
     liveUrl: "#",
     githubUrl: "#",
     metrics: [
-      { label: "Inference",   value: "<80ms", color: "#67e8f9" },
-      { label: "Model size",  value: "4.2MB", color: "#fb923c" },
+      { label: "Platforms", value: "6", color: "#60a5fa" },
+      { label: "Input Size", value: "1024", color: "#34d399" },
+      { label: "ML Runtime", value: "TFLite", color: "#c084fc" },
     ],
   },
+
   {
     id: 4,
-    title: "Synthia CLI",
-    tagline: "LLM-powered dev terminal",
-    description: "A terminal assistant that understands your codebase context and suggests shell commands, explains errors, and writes boilerplate.",
-    category: "Tool",
-    tags: ["Python", "Click", "OpenAI API", "Tree-sitter"],
-    tagColors: ["#60a5fa", "#fbbf24", "#c084fc", "#34d399"],
-    accent: "#86efac",
-    accentMuted: "rgba(134,239,172,0.06)",
-    icon: Terminal,
-    iconColor: "#86efac",
-    year: "2024",
-    status: "Open Source",
+    title: "STEMifyX",
+    tagline: "Gamified STEM learning platform for modern education",
+    description:
+      "A full-stack EdTech platform featuring gamified learning, role-based dashboards, Firebase authentication, multilingual support, career guidance, and progress tracking for students, teachers, parents, and administrators.",
+    category: "Web",
+    tags: ["JavaScript", "Firebase", "Tailwind CSS", "Firestore", "HTML/CSS", "Responsive UI"],
+    tagColors: ["#fbbf24", "#34d399", "#60a5fa", "#c084fc", "#fb923c", "#67e8f9"],
+    accent: "#a78bfa",
+    accentMuted: "rgba(167,139,250,0.06)",
+    icon: GraduationCap,
+    iconColor: "#a78bfa",
+    year: "2026",
+    status: "Completed",
+    featured: true,
+    liveUrl: "#",
     githubUrl: "#",
     metrics: [
-      { label: "Stars",     value: "180+", color: "#fbbf24" },
-      { label: "Languages", value: "12",   color: "#86efac" },
+      { label: "User Roles", value: "4", color: "#a78bfa" },
+      { label: "Languages", value: "3", color: "#34d399" },
+      { label: "Education", value: "Classes 6–12", color: "#60a5fa" },
     ],
   },
+
   {
     id: 5,
-    title: "VectorStore",
-    tagline: "Lightweight vector database",
-    description: "An embedded vector DB for Python with HNSW indexing, metadata filtering, and zero external dependencies. Designed for edge inference.",
-    category: "AI/ML",
-    tags: ["Python", "C extensions", "HNSW", "NumPy"],
-    tagColors: ["#60a5fa", "#fca5a5", "#fbbf24", "#86efac"],
-    accent: "#fca5a5",
-    accentMuted: "rgba(252,165,165,0.06)",
-    icon: Database,
-    iconColor: "#fca5a5",
-    year: "2023",
-    status: "Open Source",
+    title: "3D Apple Website",
+    tagline: "Immersive product showcase with real-time 3D interactions",
+    description:
+      "A pixel-perfect recreation of Apple's product landing page using React Three Fiber, WebGL, and GSAP-powered scroll animations to deliver an immersive, responsive product experience.",
+    category: "Web",
+    tags: ["React", "Three.js", "React Three Fiber", "GSAP", "Tailwind CSS", "Vite"],
+    tagColors: ["#60a5fa", "#34d399", "#67e8f9", "#c084fc", "#fbbf24", "#fb923c"],
+    accent: "#67e8f9",
+    accentMuted: "rgba(103,232,249,0.06)",
+    icon: Box,
+    iconColor: "#67e8f9",
+    year: "2026",
+    status: "Live",
+    featured: false,
+    liveUrl: "https://3d-apple-website-roan.vercel.app",
     githubUrl: "#",
     metrics: [
-      { label: "Query speed",    value: "0.4ms",  color: "#fca5a5" },
-      { label: "PyPI downloads", value: "8k/mo",  color: "#fbbf24" },
+      { label: "3D Engine", value: "WebGL", color: "#67e8f9" },
+      { label: "Animation", value: "GSAP", color: "#c084fc" },
+      { label: "Rendering", value: "Real-time", color: "#34d399" },
     ],
   },
+
   {
     id: 6,
-    title: "LayerViz",
-    tagline: "Neural network layer inspector",
-    description: "Interactive visualiser for PyTorch model internals — attention maps, activation patterns, and gradient flow in a browser UI.",
+    title: "AI Resume Analyzer",
+    tagline: "Intelligent ATS resume analysis in the browser",
+    description:
+      "A React-based AI resume analyzer that evaluates resumes against job descriptions, generates ATS-style scores, and provides actionable improvement suggestions using client-side PDF parsing and modern UI interactions.",
     category: "AI/ML",
-    tags: ["React", "D3.js", "PyTorch", "WebSockets"],
-    tagColors: ["#67e8f9", "#fbbf24", "#fb923c", "#c084fc"],
-    accent: "#fcd34d",
-    accentMuted: "rgba(252,211,77,0.06)",
-    icon: Layers,
-    iconColor: "#fcd34d",
-    year: "2023",
-    status: "WIP",
+    tags: ["React", "TypeScript", "Tailwind CSS", "Zustand", "PDF.js", "Framer Motion"],
+    tagColors: ["#60a5fa", "#c084fc", "#34d399", "#fbbf24", "#fb923c", "#67e8f9"],
+    accent: "#fbbf24",
+    accentMuted: "rgba(251,191,36,0.06)",
+    icon: FileSearch,
+    iconColor: "#fbbf24",
+    year: "2026",
+    status: "Live",
+    featured: false,
+    liveUrl: "https://analyzer-resume.vercel.app",
     githubUrl: "#",
+    metrics: [
+      { label: "Processing", value: "Client-side", color: "#60a5fa" },
+      { label: "ATS Analysis", value: "Instant", color: "#34d399" },
+      { label: "PDF Parsing", value: "In-browser", color: "#c084fc" },
+    ],
   },
 ];
 
-const CATEGORIES: Category[] = ["All", "AI/ML", "Web", "Mobile", "Tool"];
+const CATEGORIES: Category[] = ["All", "AI/ML", "Web", "Mobile"];
 
-const statusConfig: Record<Project["status"], { color: string; border: string; bg: string }> = {
-  Live:          { color: "#34d399", border: "rgba(52,211,153,0.28)",  bg: "rgba(52,211,153,0.09)"  },
-  "Open Source": { color: "#93c5fd", border: "rgba(147,197,253,0.28)", bg: "rgba(147,197,253,0.09)" },
-  WIP:           { color: "#fbbf24", border: "rgba(251,191,36,0.28)",  bg: "rgba(251,191,36,0.09)"  },
+const statusConfig: Record<string, { color: string; border: string; bg: string }> = {
+  Live:                { color: "#34d399", border: "rgba(52,211,153,0.28)",  bg: "rgba(52,211,153,0.09)"  },
+  "Open Source":       { color: "#93c5fd", border: "rgba(147,197,253,0.28)", bg: "rgba(147,197,253,0.09)" },
+  WIP:                 { color: "#fbbf24", border: "rgba(251,191,36,0.28)",  bg: "rgba(251,191,36,0.09)"  },
+  Completed:           { color: "#a78bfa", border: "rgba(167,139,250,0.28)", bg: "rgba(167,139,250,0.09)" },
+  "Research Prototype":{ color: "#fb923c", border: "rgba(251,146,60,0.28)",  bg: "rgba(251,146,60,0.09)"  },
 };
+
+const DEFAULT_STATUS = { color: "#94a3b8", border: "rgba(148,163,184,0.28)", bg: "rgba(148,163,184,0.09)" };
 
 // ─── Directional glow border ──────────────────────────────────────────────────
 function useDirectionalBorder(accent: string) {
@@ -230,7 +262,7 @@ function TagPill({ tag, color }: { tag: string; color: string }) {
 function FeaturedCard({ project }: { project: Project }) {
   const Icon = project.icon;
   const [hovered, setHovered] = useState(false);
-  const sc = statusConfig[project.status];
+  const sc = statusConfig[project.status] ?? DEFAULT_STATUS;
 
   return (
     <motion.div {...fadeUp(0.1)}>
@@ -328,7 +360,7 @@ function FeaturedCard({ project }: { project: Project }) {
 function ProjectCard({ project, index }: { project: Project; index: number }) {
   const Icon = project.icon;
   const [hovered, setHovered] = useState(false);
-  const sc = statusConfig[project.status];
+  const sc = statusConfig[project.status] ?? DEFAULT_STATUS;
 
   return (
     <motion.div {...fadeUp(0.05*index)}>
@@ -414,9 +446,15 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 export default function ProjectsSection() {
   const [activeCategory, setActiveCategory] = useState<Category>("All");
   const featured = PROJECTS.find((p) => p.featured)!;
+
+  const hasCategory = (p: Project, cat: Category) => {
+    const c = p.category;
+    return Array.isArray(c) ? c.includes(cat) : c === cat;
+  };
+
   const filtered = activeCategory === "All"
     ? PROJECTS.filter((p) => !p.featured)
-    : PROJECTS.filter((p) => p.category === activeCategory && !p.featured);
+    : PROJECTS.filter((p) => hasCategory(p, activeCategory) && !p.featured);
 
   return (
     <section id="projects" className="relative px-6 sm:px-10 lg:px-16 py-24 sm:py-32" style={{ background:"transparent" }}>
@@ -448,10 +486,10 @@ export default function ProjectsSection() {
         {/* Title */}
         <motion.div {...fadeUp(0.05)} className="mb-10">
           <h2 className="font-syne font-bold tracking-tight leading-[1.08]" style={{ fontSize:"clamp(2rem,5vw,4rem)", color:"var(--text-primary)" }}>
-            Things I&apos;ve{" "}
+            What I've {" "}
             <span className="bg-clip-text text-transparent"
               style={{ backgroundImage:"linear-gradient(120deg,#93c5fd 0%,#c4b5fd 45%,#f472b6 100%)", backgroundSize:"200% auto", animation:"shimmer 6s linear infinite" }}>
-              shipped.
+              Built.
             </span>
           </h2>
         </motion.div>
@@ -474,7 +512,7 @@ export default function ProjectsSection() {
 
         {/* Featured */}
         <AnimatePresence mode="wait">
-          {(activeCategory==="All" || activeCategory===featured.category) && (
+          {(activeCategory==="All" || hasCategory(featured, activeCategory)) && (
             <motion.div key="featured"
               initial={{ opacity:0, y:16 }} animate={{ opacity:1, y:0 }}
               exit={{ opacity:0, y:-10 }} transition={{ duration:0.4 }} className="mb-4">

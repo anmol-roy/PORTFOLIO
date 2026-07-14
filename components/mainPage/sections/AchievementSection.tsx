@@ -259,7 +259,7 @@ export default function AchievementsSection() {
         {/* Label */}
         <motion.div {...fadeUp(0)} className="mb-6 flex items-center gap-4">
           <span className="font-mono tracking-[0.3em] uppercase" style={{ fontSize: "18.35px", color: "var(--section-num)" }}>06 —</span>
-          <span className="font-syne tracking-[0.2em] uppercase" style={{ fontSize: "18.35px", color: "var(--section-label)" }}>Achievements</span>
+          <span className="font-syne tracking-[0.2em] uppercase" style={{ fontSize: "18.35px", color: "var(--section-label)" }}>CERTIFICATIONS</span>
           <span className="h-px w-[60px]" style={{ background: "var(--divider)" }} />
         </motion.div>
 

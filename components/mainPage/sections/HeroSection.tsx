@@ -117,21 +117,21 @@ export default function HeroSection() {
                     }}
                   >
                     <Sparkles className="h-2.5 w-2.5" style={{ color: "#a5b4fc" }} />
-                    <span className="font-mono-jb text-[9px] tracking-[0.14em] uppercase" style={{ color: "rgba(165,180,252,0.9)" }}>
+                    {/* <span className="font-mono-jb text-[9px] tracking-[0.14em] uppercase" style={{ color: "rgba(165,180,252,0.9)" }}>
                       An Engineer
-                    </span>
+                    </span> */}
                   </motion.span>
                 </span>
               </h1>
             </motion.div>
 
             {/* Role line */}
-            <motion.div {...reveal(0.17)} className="mb-5 flex items-center gap-3">
+            {/* <motion.div {...reveal(0.17)} className="mb-5 flex items-center gap-3">
               <div className="h-px w-5" style={{ background: "var(--divider)" }} />
               <p className="font-dm text-sm sm:text-[15px] font-light italic tracking-wide" style={{ color: "var(--text-muted)" }}>
                 AI &amp; Web
               </p>
-            </motion.div>
+            </motion.div> */}
 
             {/* Bio */}
             <motion.p
@@ -139,7 +139,7 @@ export default function HeroSection() {
               className="font-dm mb-8 max-w-[400px] text-sm sm:text-[14.5px] leading-[1.9] font-light"
               style={{ color: "var(--text-tertiary)" }}
             >
-              I build modern web experiences and craft the interfaces people use to interact with them — from writing clean, scalable code to shipping complete products end to end, with attention to every detail.
+              I build modern web experiences with clean, scalable code and attention to every detail.
 
             </motion.p>
 
@@ -244,7 +244,7 @@ export default function HeroSection() {
           >
             <div className="absolute inset-0 m-auto -z-10 rounded-3xl pointer-events-none"
               style={{
-                width: "260px", height: "260px",
+                width: "360px", height: "360px",
                 background: "radial-gradient(ellipse, rgba(96,165,250,0.16) 0%, rgba(192,132,252,0.09) 55%, transparent 75%)",
                 filter: "blur(32px)",
               }}
@@ -283,34 +283,7 @@ export default function HeroSection() {
                 </div>
               </div>
 
-              {/* Floating stat card */}
-              <motion.div
-                className="absolute rounded-xl backdrop-blur-md z-20"
-                style={{
-                  top: "-16px", right: "-68px",
-                  background: "var(--card-surface)",
-                  border: "1px solid var(--card-border)",
-                  boxShadow: "0 4px 24px var(--shadow-color)",
-                }}
-                initial={{ opacity: 0, scale: 0.82 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.45, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <div className="px-4 py-3 flex items-center gap-3">
-                  <div className="h-8 w-8 rounded-lg flex items-center justify-center shrink-0"
-                    style={{ 
-                      background: "rgba(251,191,36,0.14)", 
-                      border: "1px solid rgba(251,191,36,0.3)" 
-                    }}
-                  >
-                    <Cpu className="h-4 w-4" style={{ color: "#f59e0b" }} />
-                  </div>
-                  <div>
-                    <p className="font-syne text-sm font-bold leading-none mb-0.5" style={{ color: "var(--text-primary)" }}>7+</p>
-                    <p className="font-mono-jb text-[9px] tracking-wide uppercase" style={{ color: "var(--text-muted)" }}>Projects shipped</p>
-                  </div>
-                </div>
-              </motion.div>
+            
             </div>
           </motion.div>
         </div>
