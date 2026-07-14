@@ -52,8 +52,8 @@ const PROJECTS: Project[] = [
     year: "2026",
     status: "Live",
     featured: true,
-    liveUrl: "#",
-    githubUrl: "#",
+    liveUrl: "https://ai-upskill-engine.vercel.app/onboarding",
+    githubUrl: "https://github.com/anmol-roy/Ai-upskilling-engine",
     metrics: [
       { label: "Interview Report", value: "~30s", color: "#60a5fa" },
       { label: "AI Questions", value: "15+", color: "#34d399" },
@@ -102,8 +102,7 @@ const PROJECTS: Project[] = [
     year: "2026",
     status: "Research Prototype",
     featured: false,
-    liveUrl: "#",
-    githubUrl: "#",
+    githubUrl: "https://github.com/anmol-roy/SBP_DBP-prediction-model-with-flutter-application",
     metrics: [
       { label: "Platforms", value: "6", color: "#60a5fa" },
       { label: "Input Size", value: "1024", color: "#34d399" },
@@ -153,7 +152,7 @@ const PROJECTS: Project[] = [
     status: "Live",
     featured: false,
     liveUrl: "https://3d-apple-website-roan.vercel.app",
-    githubUrl: "#",
+    githubUrl: "https://github.com/anmol-roy/-3d-apple-website",
     metrics: [
       { label: "3D Engine", value: "WebGL", color: "#67e8f9" },
       { label: "Animation", value: "GSAP", color: "#c084fc" },
