@@ -99,7 +99,7 @@ const PROJECTS: Project[] = [
     accentMuted: "rgba(251,113,133,0.06)",
     icon: HeartPulse,
     iconColor: "#fb7185",
-    year: "2026",
+    year: "2025",
     status: "Research Prototype",
     featured: false,
     githubUrl: "https://github.com/anmol-roy/SBP_DBP-prediction-model-with-flutter-application",
@@ -123,7 +123,7 @@ const PROJECTS: Project[] = [
     accentMuted: "rgba(167,139,250,0.06)",
     icon: GraduationCap,
     iconColor: "#a78bfa",
-    year: "2026",
+    year: "2025",
     status: "Completed",
     featured: true,
     liveUrl: "#",
@@ -148,7 +148,7 @@ const PROJECTS: Project[] = [
     accentMuted: "rgba(103,232,249,0.06)",
     icon: Box,
     iconColor: "#67e8f9",
-    year: "2026",
+    year: "2025",
     status: "Live",
     featured: false,
     liveUrl: "https://3d-apple-website-roan.vercel.app",
@@ -173,7 +173,7 @@ const PROJECTS: Project[] = [
     accentMuted: "rgba(251,191,36,0.06)",
     icon: FileSearch,
     iconColor: "#fbbf24",
-    year: "2026",
+    year: "2024",
     status: "Live",
     featured: false,
     liveUrl: "https://analyzer-resume.vercel.app",
@@ -398,7 +398,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                 </a>
               )}
             </div>
-          </div>
+          </div> 
 
           {/* Title + badge */}
           <div className="mb-1.5 flex items-center gap-2 flex-wrap">

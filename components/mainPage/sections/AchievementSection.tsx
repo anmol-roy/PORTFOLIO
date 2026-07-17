@@ -14,17 +14,17 @@ const fadeUp = (delay = 0) => ({
 const CERTS = [
   {
     title: "Machine Learning Specialisation",
-    issuer: "DeepLearning.AI",
-    date: "Aug 2023",
+    issuer: "IIITNR",
+    date: "Aug 2025",
     credentialUrl: "#",
     accent: "#60a5fa",       // blue
     glow: "rgba(96,165,250,",
     iconBg: "#1e3a5f",
   },
   {
-    title: "Google Associate Cloud Engineer",
-    issuer: "Google Cloud",
-    date: "Jan 2024",
+    title: "Full Stack",
+    issuer: "INFYNAS",
+    date: "June 2026",
     credentialUrl: "#",
     accent: "#34d399",       // emerald
     glow: "rgba(52,211,153,",
