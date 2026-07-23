@@ -230,7 +230,7 @@ export default function HeroSection() {
 
               <div className="font-mono-jb flex items-center gap-1.5 text-[13px]" style={{ color: "var(--text-secondary)" }}>
                 <MapPin className="h-2.5 w-2.5" style={{ color: "var(--text-muted)" }} />
-                <span style={{ color: "var(--text-secondary)" }}>Bengluru · Remote</span>
+                <span style={{ color: "var(--text-secondary)" }}>Bengaluru · Remote</span>
               </div>
             </motion.div>
           </div>

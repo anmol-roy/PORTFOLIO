@@ -16,13 +16,12 @@ const fadeUp = (delay = 0) => ({
 const SOCIALS = [
   { icon: Github,   label: "GitHub",   sub: "@anmol-Shandilya",       href: "https://github.com/anmol-roy",           color: "#64748b", hoverBg: "rgba(100,116,139," },
   { icon: Linkedin, label: "LinkedIn", sub: "anmol-Shandilya",   href: "https://www.linkedin.com/in/anmolshandilya/", color: "#60a5fa", hoverBg: "rgba(96,165,250,"  },
-  { icon: Twitter,  label: "Twitter",  sub: "@anmolroy_dev",     href: "https://twitter.com/anmolroy_dev",        color: "#67e8f9", hoverBg: "rgba(103,232,249," },
   { icon: Mail,     label: "Email",    sub: "anmolroy***@gmail.com", href: "mailto:anmolroy112@gmail.com",               color: "#c4b5fd", hoverBg: "rgba(196,181,253," },
 ];
 
 const INFO_ITEMS = [
   { icon: Mail,   color: "#c4b5fd", text: "anmolroy112@gmail.com",           copyable: true  },
-  { icon: MapPin, color: "#f472b6", text: "Bengluru · Remote worldwide",    copyable: false },
+  { icon: MapPin, color: "#f472b6", text: "Bengaluru · Remote",    copyable: false },
   // { icon: Clock,  color: "#fbbf24", text: "IST (GMT +5:30) · <24h reply", copyable: false },
 ];
 
